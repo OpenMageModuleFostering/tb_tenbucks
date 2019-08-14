@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <tenbucks translate="label">
+            <label>Tenbucks.</label>
+            <sort_order>401</sort_order>
+            <class>tenbucks</class>
+        </tenbucks>
+    </tabs>
+    <sections>
+        <tenbucks translate="label">
+            <label>Tenbucks.</label>            
+            <tab>tenbucks</tab>
+            <class>tenbucks-section</class>
+            <header_css>tenbucks-header</header_css>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <expanded>1</expanded>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>                        
+                        <gtin translate="label, comment">
+                            <label>GTIN</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>                            
+                            <validate>required-entry</validate>
+                            <comment>Generally EAN, UPC or ASIN custom magento attributes</comment>
+                            <source_model>tenbucks/system_config_source_attributes</source_model>                            
+                        </gtin>                     
+                    </fields>                        
+                </general>
+            </groups>
+        </tenbucks>
+    </sections>
+</config>	

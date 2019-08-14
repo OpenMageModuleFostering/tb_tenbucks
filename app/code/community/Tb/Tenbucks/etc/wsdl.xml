@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Magento">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"
+                    schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <complexType name="tenbucksSalesStatusEntity">
+                <all>
+                    <element name="status" type="xsd:string"/>
+                    <element name="label" type="xsd:string"/>
+                    <element name="state" type="xsd:string"/>
+                    <element name="is_default" type="xsd:boolean"/>
+                </all>
+            </complexType>
+            <complexType name="tenbucksSalesStatusEntityArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:tenbucksSalesStatusEntity[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="tenbuckscatalogAssignedProduct">
+                <all>
+                    <element name="product_id" type="xsd:int"/>
+                    <element name="sku" type="xsd:string"/>
+                    <element name="name" type="xsd:string"/>
+                    <element name="set" type="xsd:int"/>
+                    <element name="type" type="xsd:string"/>
+                    <element name="position" type="xsd:int"/>
+                </all>
+            </complexType>
+            <complexType name="tenbuckscatalogAssignedProductArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:tenbuckscatalogAssignedProduct[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="tenbucksStoreEntity">
+                <all>
+                    <element name="store_id" type="xsd:int"/>
+                    <element name="code" type="xsd:string"/>
+                    <element name="website_id" type="xsd:int"/>
+                    <element name="group_id" type="xsd:int"/>
+                    <element name="name" type="xsd:string"/>
+                    <element name="sort_order" type="xsd:int"/>
+                    <element name="is_active" type="xsd:int"/>
+                    <element name="country_default" type="xsd:string"/>
+                    <element name="locale_code" type="xsd:string"/>
+                    <element name="base_currency" type="xsd:string"/>
+                </all>
+            </complexType>
+            <complexType name="tenbucksStoreEntityArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:tenbucksStoreEntity[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+            <complexType name="tenbucksCurrencyEntity">
+                <all>
+                    <element name="base_currency" type="xsd:string"/>
+                    <element name="to_currency" type="xsd:string"/>
+                    <element name="rate" type="xsd:string"/>
+                </all>
+            </complexType>
+            <complexType name="tenbucksCurrencyEntityArray">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="typens:tenbucksCurrencyEntity[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+        </schema>
+    </types>
+    <message name="tenbucksShippingListRequest">
+        <part name="sessionId" type="xsd:string"/>
+        <part name="storeId" type="xsd:string"/>
+    </message>
+    <message name="tenbucksShippingListResponse">
+        <part name="result" type="typens:shoppingCartShippingMethodEntityArray"/>
+    </message>
+    <message name="tenbucksSalesStatusListRequest">
+        <part name="sessionId" type="xsd:string"/>
+    </message>
+    <message name="tenbucksSalesStatusListResponse">
+        <part name="result" type="typens:tenbucksSalesStatusEntityArray"/>
+    </message>
+    <message name="tenbucksCatalogCategoryassignedProductsRequest">
+        <part name="sessionId" type="xsd:string"/>
+        <part name="categoryId" type="xsd:int"/>
+    </message>
+    <message name="tenbucksCatalogCategoryassignedProductsResponse">
+        <part name="result" type="typens:tenbuckscatalogAssignedProductArray"/>
+    </message>
+    <message name="tenbucksCoreStoreListRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="tenbucksCoreStoreListResponse">
+        <part name="result" type="typens:tenbucksStoreEntityArray" />
+    </message>
+    <message name="tenbucksDirectoryCurrencyListRequest">
+        <part name="sessionId" type="xsd:string" />
+    </message>
+    <message name="tenbucksDirectoryCurrencyListResponse">
+        <part name="result" type="typens:tenbucksCurrencyEntityArray" />
+    </message>
+    <portType name="{{var wsdl.handler}}PortType">
+        <operation name="tenbucksShippingList">
+            <documentation>Get list of available shipping methods</documentation>
+            <input message="typens:tenbucksShippingListRequest"/>
+            <output message="typens:tenbucksShippingListResponse"/>
+        </operation>
+        <operation name="tenbucksSalesStatusList">
+            <documentation>Get list of available order status</documentation>
+            <input message="typens:tenbucksSalesStatusListRequest"/>
+            <output message="typens:typens:tenbucksSalesStatusListResponse"/>
+        </operation>
+        <operation name="tenbucksCatalogCategoryassignedProducts">
+            <documentation>Retrieve list of assigned products</documentation>
+            <input message="typens:tenbucksCatalogCategoryassignedProductsRequest"/>
+            <output message="typens:typens:tenbucksCatalogCategoryassignedProductsResponse"/>
+        </operation>
+        <operation name="tenbucksCatalogProductitemsInCategory">
+            <documentation>Retrieve list of products assigned to at least one category</documentation>
+            <input message="typens:catalogProductListRequest"/>
+            <output message="typens:catalogProductListResponse"/>
+        </operation>
+        <operation name="tenbucksCatalogProductAttributeList">
+            <documentation>Retrieve attribute list</documentation>
+            <input message="typens:catalogProductAttributeListRequest"/>
+            <output message="typens:catalogProductAttributeListResponse"/>
+        </operation>
+        <operation name="tenbucksCoreStoreList">
+            <documentation>List of stores</documentation>
+            <input message="typens:tenbucksCoreStoreListRequest" />
+            <output message="typens:tenbucksCoreStoreListResponse" />
+        </operation>
+        <operation name="tenbucksDirectoryCurrencyList">
+            <documentation>List of currencies</documentation>
+            <input message="typens:tenbucksDirectoryCurrencyListRequest" />
+            <output message="typens:tenbucksDirectoryCurrencyListResponse" />
+        </operation>
+    </portType>
+    <binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="tenbucksShippingList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="tenbucksSalesStatusList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="tenbucksCatalogCategoryassignedProducts">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="tenbucksCatalogProductitemsInCategory">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="tenbucksCatalogProductAttributeList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="tenbucksCoreStoreList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="tenbucksDirectoryCurrencyList">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action"/>
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+</definitions>

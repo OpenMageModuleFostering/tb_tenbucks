@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <tenbucks module="tenbucks" translate="title">
+            <title>Tenbucks.</title>
+            <sort_order>71</sort_order>                       
+            <children>
+                <apps module="tenbucks" translate="title">
+                    <title>My Applications</title>
+                    <sort_order>10</sort_order>
+                    <action>adminhtml/tenbucks/index</action>
+                </apps>
+                <account module="tenbucks" translate="title">
+                    <title>My Account</title>
+                    <sort_order>20</sort_order>
+                    <action>adminhtml/tenbucks/index/redirect/account</action>
+                </account>
+                <configuration module="tenbucks" translate="title">
+                    <title>Configuration</title>
+                    <sort_order>30</sort_order>
+                    <action>adminhtml/system_config/edit/section/tenbucks</action>
+                </configuration>
+            </children>
+        </tenbucks>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <tenbucks module="tenbucks" translate="title">
+                        <title>Tenbucks.</title>
+                        <sort_order>1</sort_order>
+                        <children>
+                            <apps translate="title">
+                                <title>My Applications</title>
+                            </apps>
+                            <account translate="title">
+                                <title>My Account</title>
+                            </account>
+                            <configuration translate="title">
+                                <title>Configuration</title>
+                            </configuration>
+                        </children>
+                    </tenbucks>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <tenbucks>
+                                        <title>Tenbucks.</title>                                        
+                                    </tenbucks>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

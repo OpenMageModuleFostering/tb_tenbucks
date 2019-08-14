@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:typens="urn:{{var wsdl.name}}"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  name="{{var wsdl.name}}"
+                  targetNamespace="urn:{{var wsdl.name}}">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:{{var wsdl.name}}">
+            <xsd:complexType name="tenbucksSalesStatusEntity">
+                <xsd:sequence>
+                    <xsd:element name="status" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="label" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="state" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="is_default" type="xsd:boolean" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="tenbucksSalesStatusEntityArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:tenbucksSalesStatusEntity" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="tenbuckscatalogAssignedProduct">
+                <xsd:sequence>
+                    <xsd:element name="product_id" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="sku" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="name" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="set" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="type" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="position" type="xsd:int" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="tenbuckscatalogAssignedProductArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:tenbuckscatalogAssignedProduct" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="tenbucksStoreEntity">
+                <xsd:sequence>
+                    <xsd:element name="store_id" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="code" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="website_id" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="group_id" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="name" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="sort_order" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="is_active" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="country_default" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="locale_code" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="currency_base" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="tenbucksStoreEntityArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="typens:tenbucksStoreEntity" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="tenbucksCurrencyEntity">
+                <xsd:sequence>
+                    <xsd:element name="currency" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="rate" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="tenbucksCurrencyEntityArray">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="unbounded" name="complexObjectArray" type="tenbucksCurrencyEntity" />
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="salesOrderListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="filters" type="typens:filters" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="salesOrderListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:salesOrderListEntityArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+
+            <xsd:element name="tenbucksShippingListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="storeId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tenbucksShippingListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:shoppingCartShippingMethodEntityArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tenbucksSalesStatusListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tenbucksSalesStatusListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:tenbucksSalesStatusEntityArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tenbucksCatalogCategoryassignedProductsRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                        <xsd:element minOccurs="1" maxOccurs="1" name="categoryId" type="xsd:int" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tenbucksCatalogCategoryassignedProductsResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:tenbuckscatalogAssignedProductArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tenbucksStoreListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tenbucksStoreListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:tenbucksStoreEntityArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tenbucksCurrencyListRequestParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="sessionId" type="xsd:string" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tenbucksCurrencyListResponseParam">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" maxOccurs="1" name="result" type="typens:tenbucksCurrencyEntityArray" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="tenbucksShippingListRequest">
+        <wsdl:part name="parameters" element="typens:tenbucksShippingListRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="tenbucksShippingListResponse">
+        <wsdl:part name="parameters" element="typens:tenbucksShippingListResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="tenbucksSalesStatusListRequest">
+        <wsdl:part name="parameters" element="typens:tenbucksSalesStatusListRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="tenbucksSalesStatusListResponse">
+        <wsdl:part name="parameters" element="typens:tenbucksSalesStatusListResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="tenbucksCatalogCategoryassignedProductsRequest">
+        <wsdl:part name="parameters" element="typens:tenbucksCatalogCategoryassignedProductsRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="tenbucksCatalogCategoryassignedProductsResponse">
+        <wsdl:part name="parameters" element="typens:tenbucksCatalogCategoryassignedProductsResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="tenbucksStoreListRequest">
+        <wsdl:part name="parameters" element="typens:tenbucksStoreListRequestRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="tenbucksStoreListResponse">
+        <wsdl:part name="parameters" element="typens:tenbucksStoreListRequestResponseParam" />
+    </wsdl:message>
+    <wsdl:message name="tenbucksCurrencyListRequest">
+        <wsdl:part name="parameters" element="typens:tenbucksCurrencyListRequestRequestParam" />
+    </wsdl:message>
+    <wsdl:message name="tenbucksCurrencyListResponse">
+        <wsdl:part name="parameters" element="typens:tenbucksCurrencyListRequestResponseParam" />
+    </wsdl:message>
+    <wsdl:portType name="{{var wsdl.handler}}PortType">
+        <wsdl:operation name="tenbucksShippingList">
+            <wsdl:documentation>Get list of available shipping methods</wsdl:documentation>
+            <wsdl:input message="typens:tenbucksShippingListRequest"/>
+            <wsdl:output message="typens:tenbucksShippingListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksSalesStatusList">
+            <wsdl:documentation>Get list of available order status</wsdl:documentation>
+            <wsdl:input message="typens:tenbucksSalesStatusListRequest"/>
+            <wsdl:output message="typens:typens:tenbucksSalesStatusListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksCatalogCategoryassignedProducts">
+            <wsdl:documentation>Retrieve list of assigned products</wsdl:documentation>
+            <wsdl:input message="typens:tenbucksCatalogCategoryassignedProductsRequest"/>
+            <wsdl:output message="typens:typens:tenbucksCatalogCategoryassignedProductsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksCatalogProductitemsInCategory">
+            <wsdl:documentation>Retrieve list of products assigned to at least one category</wsdl:documentation>
+            <wsdl:input message="typens:catalogProductListRequest"/>
+            <wsdl:output message="typens:catalogProductListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksCatalogProductAttributeList">
+            <wsdl:documentation>Retrieve attribute list</wsdl:documentation>
+            <wsdl:input message="typens:catalogProductAttributeListRequest"/>
+            <wsdl:output message="typens:catalogProductAttributeListResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksStoreList">
+            <wsdl:documentation>List of stores</wsdl:documentation>
+            <wsdl:input message="typens:tenbucksStoreListRequest" />
+            <wsdl:output message="typens:tenbucksStoreListResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksCurrencyList">
+            <wsdl:documentation>List of currencies</wsdl:documentation>
+            <wsdl:input message="typens:tenbucksCurrencyListRequest" />
+            <wsdl:output message="typens:tenbucksCurrencyListResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="tenbucksShippingList">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksSalesStatusList">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksCatalogCategoryassignedProducts">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksCatalogProductitemsInCategory">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksCatalogProductAttributeList">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksStoreList">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="tenbucksCurrencyList">
+            <soap:operation soapAction="" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

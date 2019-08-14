@@ -1,0 +1,182 @@
+<?xml version="1.0" ?>
+<!--
+<?php
+/**
+ * Tenbucks
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to hello@tenbucks.io so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Tenbucks to newer
+ * versions in the future.
+ *
+ * @category   Tenbucks
+ * @package    Tb_Tenbucks
+ * @copyright  Copyright (c) 2016 Tenbucks. (https://www.tenbucks.io)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author      Tenbucks <hello@tenbucks.io>
+ */
+-->
+<config>
+    <api>
+        <resources>
+            <tenbucks_shipping translate="title" module="tenbucks">
+                <model>tenbucks/shipping_api</model>
+                <title>Shipping Method</title>
+                <acl>tenbucks/shipping</acl>
+                <methods>
+                    <list translate="title" module="tenbucks">
+                        <title>Retrieve Shipping Method List</title>
+                        <method>getShippingMethodsList</method>
+                    </list>
+                </methods>
+                <faults module="tenbucks">
+                    <no_shipping_method_active>
+                        <code>1001</code>
+                        <message>Can not make operation because there is no shipping method active</message>
+                    </no_shipping_method_active>
+                    <shipping_methods_list_could_not_be_retrieved>
+                        <code>1002</code>
+                        <message>Can not receive list of shipping methods</message>
+                    </shipping_methods_list_could_not_be_retrieved>
+                </faults>
+            </tenbucks_shipping>
+            <tenbucks_sales_status translate="title" module="tenbucks">
+                <model>tenbucks/sales_status_api</model>
+                <title>Order Status</title>
+                <acl>tenbucks/sales_status</acl>
+                <methods>
+                    <list translate="title" module="tenbucks">
+                        <title>Retrieve Order Status List</title>
+                        <method>getOrderStatusList</method>
+                    </list>
+                </methods>
+                <faults module="tenbucks">
+                </faults>
+            </tenbucks_sales_status>
+            <tenbucks_catalog_category translate="title" module="tenbucks">
+                <model>tenbucks/catalog_category_api</model>
+                <title>Product Category</title>
+                <acl>tenbucks/catalog_category</acl>
+                <methods>
+                    <assignedProducts translate="title" module="tenbucks">
+                        <title>Retrieve list of assigned products</title>
+                        <method>assignedProducts</method>
+                    </assignedProducts>
+                </methods>
+                <faults module="tenbucks">
+                </faults>
+            </tenbucks_catalog_category>
+            <tenbucks_catalog_product translate="title" module="tenbucks">
+                <model>tenbucks/catalog_product_api</model>
+                <title>Product</title>
+                <acl>tenbucks/catalog_product</acl>
+                <methods>
+                    <itemsInCategory translate="title" module="tenbucks">
+                        <title>Retrieve list of products assigned to at least one category</title>
+                        <method>itemsInCategory</method>
+                    </itemsInCategory>
+                </methods>
+                <faults module="tenbucks">
+                </faults>
+            </tenbucks_catalog_product>
+            <tenbucks_catalog_product_attribute translate="title" module="tenbucks">
+                <title>Product attributes API</title>
+                <model>tenbucks/catalog_product_attribute_api</model>
+                <acl>tenbucks/catalog_product</acl>
+                <methods>
+                    <list translate="title" module="tenbucks">
+                        <title>Retrieve attribute list</title>
+                        <method>items</method>                        
+                    </list>
+                </methods>
+               <faults module="tenbucks">
+                </faults>
+            </tenbucks_catalog_product_attribute>
+            <tenbucks_core_store translate="title" module="tenbucks">
+                <title>Store API</title>
+                <model>tenbucks/core_store_api</model>
+                <acl>tenbucks/core_store</acl>
+                <methods>
+                    <list translate="title" module="tenbucks">
+                        <title>Retrieve store list</title>
+                        <method>items</method>                        
+                    </list>
+                </methods>
+               <faults module="tenbucks">
+                </faults>
+            </tenbucks_core_store>
+            <tenbucks_directory_currency translate="title" module="tenbucks">
+                <title>Directory Currency</title>
+                <model>tenbucks/directory_currency_api</model>
+                <acl>tenbucks/directory_currency</acl>
+                <methods>
+                    <list translate="title" module="tenbucks">
+                        <title>Retrieve currency rates</title>
+                        <method>getRates</method>                        
+                    </list>
+                </methods>
+               <faults module="tenbucks">
+                </faults>
+            </tenbucks_directory_currency>
+        </resources>
+        <resources_alias>
+            <shipping>tenbucks_shipping</shipping>
+            <sales_status>tenbucks_sales_status</sales_status>
+            <catalog_category>tenbucks_catalog_category</catalog_category>
+            <catalog_product>tenbucks_catalog_product</catalog_product>
+            <catalog_product_attribute>tenbucks_catalog_product_attribute</catalog_product_attribute>
+            <core_store>tenbucks_core_store</core_store>
+            <directory_currency>tenbucks_directory_currency</directory_currency>
+        </resources_alias>
+        <v2>
+            <resources_function_prefix>
+                <shipping>tenbucksShipping</shipping>
+                <sales_status>tenbucksSalesStatus</sales_status>
+                <catalog_category>tenbucksCatalogCategory</catalog_category>
+                <catalog_product>tenbucksCatalogProduct</catalog_product>
+                <catalog_product_attribute>tenbucksCatalogProductAttribute</catalog_product_attribute>
+                <core_store>tenbucksCoreStore</core_store>
+                <directory_currency>tenbucksDirectoryCurrency</directory_currency>
+            </resources_function_prefix>
+        </v2>
+        <acl>
+            <resources>
+                <tenbucks translate="title" module="tenbucks">
+                    <title>Tenbucks</title>
+                    <sort_order>10</sort_order>
+                    <shipping translate="title" module="tenbucks">
+                        <title>Shipping Methods</title>
+                    </shipping>
+                    <sales_status translate="title" module="tenbucks">
+                        <title>Order Status</title>
+                    </sales_status>
+                    <catalog_category translate="title" module="tenbucks">
+                        <title>Product Category</title>
+                    </catalog_category>
+                    <catalog_product translate="title" module="tenbucks">
+                        <title>Products</title>
+                    </catalog_product>
+                    <catalog_product_attribute translate="title" module="tenbucks">
+                        <title>Catalog Product Attribute </title>
+                    </catalog_product_attribute>
+                    <core_store>
+                        <title>Stores</title>
+                    </core_store>
+                    <directory_currency>
+                        <title>Currency Rates</title>
+                    </directory_currency>
+                </tenbucks>
+            </resources>
+        </acl>
+    </api>
+</config>

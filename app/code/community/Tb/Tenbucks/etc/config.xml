@@ -1,0 +1,128 @@
+<?xml version="1.0" ?>
+<!--
+<?php
+/**
+ * Tenbucks
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to hello@tenbucks.io so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Tenbucks to newer
+ * versions in the future.
+ *
+ * @category   Tenbucks
+ * @package    Tb_Tenbucks
+ * @copyright  Copyright (c) 2016 Tenbucks. (https://www.tenbucks.io)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author      Tenbucks <hello@tenbucks.io>
+ */
+-->
+<config>
+    <modules>
+        <Tb_Tenbucks>
+            <version>1.1.4</version>
+        </Tb_Tenbucks>
+    </modules>
+    <global>
+        <blocks>
+            <tenbucks>
+                <class>Tb_Tenbucks_Block</class>
+            </tenbucks>
+        </blocks>
+        <helpers>
+            <tenbucks>
+                <class>Tb_Tenbucks_Helper</class>
+            </tenbucks>
+        </helpers>
+        <models>
+            <tenbucks>
+                <class>Tb_Tenbucks_Model</class>
+            </tenbucks>            
+        </models>
+        <resources>
+            <tenbucks_setup>
+                <setup>
+                    <module>Tb_Tenbucks</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </tenbucks_setup>
+            <tenbucks_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </tenbucks_write>
+            <tenbucks_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </tenbucks_read>
+        </resources>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Tb_Tenbucks after="Mage_Adminhtml">Tb_Tenbucks</Tb_Tenbucks>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <events>
+            <admin_system_config_changed_section_tenbucks>
+                <observers>
+                    <tenbucks_admin_system_config_changed_section>
+                        <class>tenbucks/observer</class>
+                        <type>singleton</type>
+                        <method>handle_adminSystemConfigChangedSection</method>
+                    </tenbucks_admin_system_config_changed_section>
+                </observers>
+            </admin_system_config_changed_section_tenbucks>
+            <catalog_product_save_after>
+                <observers>
+                    <tenbucks_catalog_product_save_after>
+                        <class>tenbucks/observer</class>
+                        <type>singleton</type>                        
+                        <method>handle_catalogProductSaveAfter</method>
+                    </tenbucks_catalog_product_save_after>
+                </observers>
+            </catalog_product_save_after>
+        </events>
+        <translate>
+            <modules>
+                <tenbucks>
+                    <files>
+                        <default>Tb_Tenbucks.csv</default>
+                    </files>
+                </tenbucks>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <tenbucks>
+                    <file>tenbucks.xml</file>
+                </tenbucks>
+            </updates>
+        </layout>
+    </adminhtml>
+    <default>
+        <tenbucks>
+            <general>               
+            </general>
+        </tenbucks>
+    </default>
+</config>
